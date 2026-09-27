@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: rayyan-risklens
+    runtime: python
+    plan: free
+    region: singapore
+    autoDeployTrigger: commit
+    buildCommand: pip install -r requirements-api.txt
+    preDeployCommand: python scripts/migrate_database.py
+    startCommand: python -m uvicorn risklens_api.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /ready
+    envVars:
+      - key: RISKLENS_ENV
+        value: production
+      - key: RISKLENS_ENABLE_DOCS
+        value: "false"
+      - key: RISKLENS_MAX_REQUEST_BODY_BYTES
+        value: "32768"
+      - key: RISKLENS_ALLOWED_HOSTS
+        fromService:
+          type: web
+          name: rayyan-risklens
+          property: host
+      - key: DATABASE_URL
+        sync: false

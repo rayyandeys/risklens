@@ -1,0 +1,37 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+data/raw/*
+!data/raw/.gitkeep
+data/processed/
+models/
+artifacts/
+reports/*.json
+reports/*.csv
+
+# Local development database
+risklens.db
+*.db-shm
+*.db-wal
+
+backups/
+*.db
+*.db-journal
+
+# Frontend dependencies/build output
+frontend/node_modules/
+frontend/dist/
+
+# Production deployment assets: exact immutable evidence + prebuilt SPA only.
+# Other generated reports/artifacts remain ignored.
+!reports/calibration_uncertainty_summary.json
+!reports/temporal_monitoring_summary.json
+!reports/model_freeze.json
+!reports/final_test_summary.json
+!frontend/dist/
+!frontend/dist/**
+PROJECT_HANDOFF.md
+SOURCE_MANIFEST.json

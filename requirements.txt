@@ -1,0 +1,15 @@
+# Tested together on Python 3.12. User environment: Python 3.12.
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+scikit-learn==1.8.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+fastapi==0.128.2
+pydantic==2.13.4
+sqlalchemy==2.0.50
+uvicorn==0.48.0
+httpx==0.28.1
+alembic==1.20.0
+psycopg[binary]==3.3.6
+torch==2.10.0

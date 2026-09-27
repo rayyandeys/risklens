@@ -1,0 +1,14 @@
+# Analyst-service runtime only. The research lock in requirements.txt remains unchanged
+# so final-test provenance is not rewritten after the one-time holdout opening.
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+scikit-learn==1.8.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+fastapi==0.128.2
+pydantic==2.13.4
+sqlalchemy==2.0.50
+uvicorn==0.48.0
+alembic==1.20.0
+psycopg[binary]==3.3.6

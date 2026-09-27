@@ -1,0 +1,361 @@
+{
+  "status": "frozen",
+  "freeze_version": 1,
+  "freeze_id": "20260927T115644_227909Z",
+  "frozen_at_utc": "2026-09-27T11:56:44.251555+00:00",
+  "protocol": "temporal-v1",
+  "dataset_sha256": "7bf10a37ce07e72e14c1b09e5efee3d27261baff4facc7da767b0474dcf9b809",
+  "feature_contract": "baf-base-v1",
+  "development_split": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation": [
+      5
+    ],
+    "test_reserved": [
+      6,
+      7
+    ]
+  },
+  "month_rows": {
+    "0": 132440,
+    "1": 127620,
+    "2": 136979,
+    "3": 150936,
+    "4": 127691,
+    "5": 119323,
+    "6": 108168,
+    "7": 96843
+  },
+  "test_evaluated": false,
+  "selected_model": {
+    "name": "histgb_15_leaves/no_customer_age",
+    "family": "HistGradientBoostingClassifier",
+    "source_artifact": "artifacts\\robustness\\20260927T070126_112700Z\\no_customer_age.joblib",
+    "frozen_artifact": "artifacts\\model_freeze\\20260927T115644_227909Z\\selected_model.joblib",
+    "sha256": "65e9caa079ba46af72955a024b7ae0fd7d207e80c10eba686954ff149eb5ee12",
+    "removed_features": [
+      "customer_age"
+    ],
+    "remaining_features": [
+      "income",
+      "name_email_similarity",
+      "prev_address_months_count",
+      "current_address_months_count",
+      "intended_balcon_amount",
+      "payment_type",
+      "zip_count_4w",
+      "velocity_6h",
+      "velocity_24h",
+      "velocity_4w",
+      "bank_branch_count_8w",
+      "date_of_birth_distinct_emails_4w",
+      "employment_status",
+      "credit_risk_score",
+      "email_is_free",
+      "housing_status",
+      "phone_home_valid",
+      "phone_mobile_valid",
+      "bank_months_count",
+      "has_other_cards",
+      "proposed_credit_limit",
+      "foreign_request",
+      "source",
+      "session_length_in_minutes",
+      "device_os",
+      "keep_alive_session",
+      "device_distinct_emails_8w"
+    ],
+    "hyperparameters": {
+      "learning_rate": 0.08,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0,
+      "max_bins": 255,
+      "early_stopping": false,
+      "class_weight": null,
+      "random_state": 42
+    },
+    "score_policy": {
+      "policy": "raw_positive_class_predict_proba",
+      "calibration": "none",
+      "display_semantics": "model score; not asserted to be a calibrated fraud probability"
+    }
+  },
+  "operating_policy": {
+    "requested_capacity": 0.03,
+    "budget_rule": "floor(number_of_scored_rows * requested_capacity)",
+    "tie_breaking": "seeded label-free permutation assigned in ascending original row_id order",
+    "tie_seed": 42
+  },
+  "final_test_policy": {
+    "reserved_months": [
+      6,
+      7
+    ],
+    "single_opening_after_freeze": true,
+    "no_post_test_model_or_threshold_selection": true
+  },
+  "validation_reproduction": {
+    "rows": 119323,
+    "max_absolute_score_difference": 9.996344030316351e-17,
+    "metrics": {
+      "rows": 119323,
+      "fraud_rows": 1411,
+      "prevalence": 0.01182504630289215,
+      "average_precision": 0.1917982270366918,
+      "roc_auc": 0.8941518759993458,
+      "brier_score": 0.010536096315719497,
+      "review_capacity": [
+        {
+          "requested_fraction": 0.01,
+          "reviewed": 1193,
+          "actual_fraction": 0.00999807245878833,
+          "tp": 335,
+          "fp": 858,
+          "fn": 1076,
+          "tn": 117054,
+          "precision": 0.2808046940486169,
+          "recall": 0.23742026931254429,
+          "random_expected_recall": 0.00999807245878833,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 14.107280239350334,
+          "cutoff_score": 0.11907650707758834,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.03,
+          "reviewed": 3579,
+          "actual_fraction": 0.02999421737636499,
+          "tp": 595,
+          "fp": 2984,
+          "fn": 816,
+          "tn": 114928,
+          "precision": 0.166247555183012,
+          "recall": 0.42168674698795183,
+          "random_expected_recall": 0.02999421737636499,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 42.321840718051,
+          "cutoff_score": 0.05095814503814879,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.05,
+          "reviewed": 5966,
+          "actual_fraction": 0.04999874290790543,
+          "tp": 726,
+          "fp": 5240,
+          "fn": 685,
+          "tn": 112672,
+          "precision": 0.1216895742541066,
+          "recall": 0.5145287030474841,
+          "random_expected_recall": 0.04999874290790543,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 70.54822624305456,
+          "cutoff_score": 0.03230111642837825,
+          "cutoff_tie_size": 1
+        }
+      ]
+    }
+  },
+  "decision": {
+    "basis": "Remove customer_age as a direct model input before final-test opening because the reviewed no-age challenger has no observed aggregate development loss at the frozen 3% operating point and has slightly higher AP/Brier point estimates. This is a governance choice, not a claim of statistical superiority or fairness certification.",
+    "reference_full_validation": {
+      "rows": 119323,
+      "fraud_rows": 1411,
+      "prevalence": 0.01182504630289215,
+      "average_precision": 0.1883298111219007,
+      "roc_auc": 0.8949895918728373,
+      "brier_score": 0.010561891524829548,
+      "review_capacity": [
+        {
+          "requested_fraction": 0.01,
+          "reviewed": 1193,
+          "actual_fraction": 0.00999807245878833,
+          "tp": 341,
+          "fp": 852,
+          "fn": 1070,
+          "tn": 117060,
+          "precision": 0.28583403185247275,
+          "recall": 0.24167257264351524,
+          "random_expected_recall": 0.00999807245878833,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 14.107280239350334,
+          "cutoff_score": 0.1193450756310156,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.03,
+          "reviewed": 3579,
+          "actual_fraction": 0.02999421737636499,
+          "tp": 594,
+          "fp": 2985,
+          "fn": 817,
+          "tn": 114927,
+          "precision": 0.16596814752724226,
+          "recall": 0.4209780297661233,
+          "random_expected_recall": 0.02999421737636499,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 42.321840718051,
+          "cutoff_score": 0.0501905311402994,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.05,
+          "reviewed": 5966,
+          "actual_fraction": 0.04999874290790543,
+          "tp": 731,
+          "fp": 5235,
+          "fn": 680,
+          "tn": 112677,
+          "precision": 0.1225276567214214,
+          "recall": 0.5180722891566265,
+          "random_expected_recall": 0.04999874290790543,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 70.54822624305456,
+          "cutoff_score": 0.0315913071895046,
+          "cutoff_tie_size": 1
+        }
+      ]
+    },
+    "selected_no_age_validation": {
+      "rows": 119323,
+      "fraud_rows": 1411,
+      "prevalence": 0.01182504630289215,
+      "average_precision": 0.1917982270366918,
+      "roc_auc": 0.8941518759993458,
+      "brier_score": 0.010536096315719497,
+      "review_capacity": [
+        {
+          "requested_fraction": 0.01,
+          "reviewed": 1193,
+          "actual_fraction": 0.00999807245878833,
+          "tp": 335,
+          "fp": 858,
+          "fn": 1076,
+          "tn": 117054,
+          "precision": 0.2808046940486169,
+          "recall": 0.23742026931254429,
+          "random_expected_recall": 0.00999807245878833,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 14.107280239350334,
+          "cutoff_score": 0.1190765070775883,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.03,
+          "reviewed": 3579,
+          "actual_fraction": 0.02999421737636499,
+          "tp": 595,
+          "fp": 2984,
+          "fn": 816,
+          "tn": 114928,
+          "precision": 0.166247555183012,
+          "recall": 0.42168674698795183,
+          "random_expected_recall": 0.02999421737636499,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 42.321840718051,
+          "cutoff_score": 0.0509581450381487,
+          "cutoff_tie_size": 1
+        },
+        {
+          "requested_fraction": 0.05,
+          "reviewed": 5966,
+          "actual_fraction": 0.04999874290790543,
+          "tp": 726,
+          "fp": 5240,
+          "fn": 685,
+          "tn": 112672,
+          "precision": 0.1216895742541066,
+          "recall": 0.5145287030474841,
+          "random_expected_recall": 0.04999874290790543,
+          "random_expected_precision": 0.01182504630289215,
+          "random_expected_tp": 70.54822624305456,
+          "cutoff_score": 0.0323011164283782,
+          "cutoff_tie_size": 1
+        }
+      ]
+    },
+    "no_age_minus_full_bootstrap": {
+      "method": "paired nonparametric row bootstrap on validation month",
+      "repeats": 1000,
+      "seed": 20260927,
+      "confidence_level": 0.95,
+      "capacity": 0.03,
+      "recall_delta": {
+        "mean": 0.0019280576783537566,
+        "median": 0.002097181376501611,
+        "ci_lower": -0.009326228452900357,
+        "ci_upper": 0.013467510569579282,
+        "fraction_gt_zero": 0.598,
+        "fraction_ge_zero": 0.639
+      },
+      "average_precision_delta": {
+        "mean": 0.0034389749972469214,
+        "median": 0.003432955239176652,
+        "ci_lower": -0.0011633562558721854,
+        "ci_upper": 0.007986968302878851,
+        "fraction_gt_zero": 0.921,
+        "fraction_ge_zero": 0.921
+      }
+    },
+    "queue_overlap": {
+      "capacity": 0.03,
+      "tie_seed": 42,
+      "full_selected": 3579,
+      "no_age_selected": 3579,
+      "intersection": 3126,
+      "jaccard": 0.7752976190476191,
+      "note": "Subgroup metrics use one global queue per model; no subgroup-specific threshold is tuned."
+    },
+    "caveat": "Removing customer_age reduces direct reliance on age but does not establish fairness; correlated proxies, prevalence differences and other subgroup disparities remain possible."
+  },
+  "lineage": {
+    "robustness_run_id": "20260927T070126_112700Z",
+    "calibration_uncertainty_run_id": "20260927T102730_251207Z",
+    "temporal_monitoring_run_id": "20260927T104738_705478Z",
+    "torch_comparison_run_id": "20260927T110618_644034Z",
+    "governance_review_run_id": "20260927T114940_710040Z",
+    "report_sha256": {
+      "robustness": "f6d77b6c4954316962ad2d2d50bd01ea9b164a21db0387c0171e2d00c96ae2cb",
+      "calibration_uncertainty": "9353a3b480de5a7c66d28722a9f39e290c439f3f0dd638516c2665b630ba12be",
+      "temporal_monitoring": "2245ac8704d4e799f261baa2aaa831dc8c16f2dcc4bb9e2969ce4a835d74863f",
+      "torch_comparison": "66ffe6a0f64a10580d29a0fba96c7c4dcf173c15c2e3554d8a0c9892404b6b0e",
+      "governance_review": "e2703478c5e3eeba38548c8c6a3dd9ab7d4d33ba7ccb688050103ae60d889b27"
+    }
+  },
+  "source_sha256": {
+    "risklens_core\\model_freeze.py": "de92ef82aa663d6859263979eafa21f87f577fed40f5c1402a7c0780d907e51e",
+    "scripts\\freeze_model.py": "0034e6f66be0944ee1869ad13a8933bc7b7cede4da3bf5fc5969d1e0494cff06",
+    "risklens_core\\robustness.py": "4abde488c78beee65f1878a7c69af83536225e9ed9cc935b5e76df5d698d0a0c",
+    "risklens_core\\metrics.py": "5544d813bc0626268d03128033e8a7e23709f8db7544a939c07f33303bdfd71e",
+    "risklens_core\\features.py": "2842db90cf15b0be12d81ada03b7994e75fb0b7e6bb9d40ceb3ec922b2c7a77f",
+    "requirements.txt": "b035b20d6f8f267d9882d0690d41ddd0cd65ee010483e8285eadb77ae624f4b1"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "os": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "joblib": "1.5.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "limitations": [
+    "Model selection and all diagnostics before this manifest used development months 0-5 only; months 6-7 remain sealed.",
+    "The no-age choice is a governance/engineering decision, not evidence of fairness certification or statistical superiority.",
+    "Raw model scores are not asserted to be calibrated fraud probabilities.",
+    "The 3% review capacity is a project operating assumption rather than measured analyst staffing capacity.",
+    "After final-test opening, this model, feature set, score policy, capacity and tie rule must not be changed in response to test results."
+  ]
+}

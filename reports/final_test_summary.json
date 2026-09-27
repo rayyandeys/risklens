@@ -1,0 +1,363 @@
+{
+  "status": "complete",
+  "experiment": "final-holdout-v1",
+  "version": 1,
+  "opening_id": "20260927T155805_685685Z",
+  "completed_at_utc": "2026-09-27T15:58:17.837142+00:00",
+  "test_evaluated": true,
+  "freeze_id": "20260927T115644_227909Z",
+  "freeze_manifest_sha256": "36456a87e10a122ad85807cbf0867b641c9a33a40e69233c8433383fd75a2a4c",
+  "dataset_sha256": "7bf10a37ce07e72e14c1b09e5efee3d27261baff4facc7da767b0474dcf9b809",
+  "feature_contract": "baf-base-v1",
+  "selected_model": {
+    "name": "histgb_15_leaves/no_customer_age",
+    "sha256": "65e9caa079ba46af72955a024b7ae0fd7d207e80c10eba686954ff149eb5ee12",
+    "removed_features": [
+      "customer_age"
+    ],
+    "score_policy": {
+      "policy": "raw_positive_class_predict_proba",
+      "calibration": "none",
+      "display_semantics": "model score; not asserted to be a calibrated fraud probability"
+    }
+  },
+  "protocol": {
+    "version": 1,
+    "experiment": "final-holdout-v1",
+    "reserved_months": [
+      6,
+      7
+    ],
+    "primary_operational_metric": "Recall@3% aggregated across independent month-6 and month-7 review queues",
+    "monthly_queue_policy": "Each reserved month is ranked independently using raw frozen model score and frozen tie rule",
+    "capacities_reported": [
+      0.01,
+      0.03,
+      0.05
+    ],
+    "pooled_metrics": "AP, ROC-AUC, Brier and pooled capacity metrics are secondary descriptive holdout summaries",
+    "selection": "No model, feature, calibration, capacity or threshold selection is permitted from final-test results",
+    "pass_fail_threshold": "none predeclared; final results are reported as observed generalization evidence"
+  },
+  "holdout": {
+    "months": [
+      6,
+      7
+    ],
+    "rows": 205011,
+    "fraud_rows": 2878,
+    "prevalence": 0.014038271117159567
+  },
+  "primary_operational_result": {
+    "policy": "independent monthly queues; each month receives floor(month_rows * 0.03) review slots",
+    "requested_fraction": 0.03,
+    "rows": 205011,
+    "fraud_rows": 2878,
+    "reviewed": 6150,
+    "actual_fraction": 0.02999839033027496,
+    "tp": 1141,
+    "fp": 5009,
+    "fn": 1737,
+    "tn": 197124,
+    "precision": 0.18552845528455283,
+    "recall": 0.396455872133426,
+    "random_expected_recall": 0.02999839033027496,
+    "random_expected_precision": 0.014038271117159567,
+    "random_expected_tp": 86.33536737053134
+  },
+  "per_month": [
+    {
+      "month": 6,
+      "metrics": {
+        "rows": 108168,
+        "fraud_rows": 1450,
+        "prevalence": 0.013405073589231566,
+        "average_precision": 0.1689735419925807,
+        "roc_auc": 0.8855905380018625,
+        "brier_score": 0.012076820749698295,
+        "review_capacity": [
+          {
+            "requested_fraction": 0.01,
+            "reviewed": 1081,
+            "actual_fraction": 0.009993713482730567,
+            "tp": 295,
+            "fp": 786,
+            "fn": 1155,
+            "tn": 105932,
+            "precision": 0.272895467160037,
+            "recall": 0.20344827586206896,
+            "random_expected_recall": 0.009993713482730567,
+            "random_expected_precision": 0.013405073589231566,
+            "random_expected_tp": 14.490884549959324,
+            "cutoff_score": 0.1579204847098936,
+            "cutoff_tie_size": 1
+          },
+          {
+            "requested_fraction": 0.03,
+            "reviewed": 3245,
+            "actual_fraction": 0.029999630204866505,
+            "tp": 547,
+            "fp": 2698,
+            "fn": 903,
+            "tn": 104020,
+            "precision": 0.16856702619414485,
+            "recall": 0.37724137931034485,
+            "random_expected_recall": 0.029999630204866505,
+            "random_expected_precision": 0.013405073589231566,
+            "random_expected_tp": 43.499463797056436,
+            "cutoff_score": 0.06604534571143826,
+            "cutoff_tie_size": 1
+          },
+          {
+            "requested_fraction": 0.05,
+            "reviewed": 5408,
+            "actual_fraction": 0.04999630204866504,
+            "tp": 697,
+            "fp": 4711,
+            "fn": 753,
+            "tn": 102007,
+            "precision": 0.12888313609467456,
+            "recall": 0.4806896551724138,
+            "random_expected_recall": 0.04999630204866504,
+            "random_expected_precision": 0.013405073589231566,
+            "random_expected_tp": 72.49463797056431,
+            "cutoff_score": 0.04165511590073036,
+            "cutoff_tie_size": 1
+          }
+        ]
+      },
+      "score_distribution": {
+        "mean": 0.01091252870747045,
+        "p50": 0.0026940837653625666,
+        "p95": 0.041645131302031166,
+        "p99": 0.15788419496372547,
+        "max": 0.9124777669875488
+      }
+    },
+    {
+      "month": 7,
+      "metrics": {
+        "rows": 96843,
+        "fraud_rows": 1428,
+        "prevalence": 0.014745515938167962,
+        "average_precision": 0.20669731993636317,
+        "roc_auc": 0.8915274509950707,
+        "brier_score": 0.013034644684257236,
+        "review_capacity": [
+          {
+            "requested_fraction": 0.01,
+            "reviewed": 968,
+            "actual_fraction": 0.009995559823632065,
+            "tp": 307,
+            "fp": 661,
+            "fn": 1121,
+            "tn": 94754,
+            "precision": 0.31714876033057854,
+            "recall": 0.21498599439775912,
+            "random_expected_recall": 0.009995559823632065,
+            "random_expected_precision": 0.014745515938167962,
+            "random_expected_tp": 14.273659428146587,
+            "cutoff_score": 0.14649051780215044,
+            "cutoff_tie_size": 1
+          },
+          {
+            "requested_fraction": 0.03,
+            "reviewed": 2905,
+            "actual_fraction": 0.02999700546244953,
+            "tp": 594,
+            "fp": 2311,
+            "fn": 834,
+            "tn": 93104,
+            "precision": 0.2044750430292599,
+            "recall": 0.41596638655462187,
+            "random_expected_recall": 0.02999700546244953,
+            "random_expected_precision": 0.014745515938167962,
+            "random_expected_tp": 42.835723800377934,
+            "cutoff_score": 0.05860130528339784,
+            "cutoff_tie_size": 1
+          },
+          {
+            "requested_fraction": 0.05,
+            "reviewed": 4842,
+            "actual_fraction": 0.049998451101267,
+            "tp": 761,
+            "fp": 4081,
+            "fn": 667,
+            "tn": 91334,
+            "precision": 0.15716646014043784,
+            "recall": 0.5329131652661064,
+            "random_expected_recall": 0.049998451101267,
+            "random_expected_precision": 0.014745515938167962,
+            "random_expected_tp": 71.39778817260927,
+            "cutoff_score": 0.03631508496263399,
+            "cutoff_tie_size": 1
+          }
+        ]
+      },
+      "score_distribution": {
+        "mean": 0.009801593666477194,
+        "p50": 0.002320426152168455,
+        "p95": 0.03631046792460232,
+        "p99": 0.14644526960786436,
+        "max": 0.9254190888763195
+      }
+    }
+  ],
+  "secondary_pooled_metrics": {
+    "rows": 205011,
+    "fraud_rows": 2878,
+    "prevalence": 0.014038271117159567,
+    "average_precision": 0.1850804729138259,
+    "roc_auc": 0.8881879549600042,
+    "brier_score": 0.012529277170546404,
+    "review_capacity": [
+      {
+        "requested_fraction": 0.01,
+        "reviewed": 2050,
+        "actual_fraction": 0.009999463443424988,
+        "tp": 599,
+        "fp": 1451,
+        "fn": 2279,
+        "tn": 200682,
+        "precision": 0.2921951219512195,
+        "recall": 0.20813064628214037,
+        "random_expected_recall": 0.009999463443424988,
+        "random_expected_precision": 0.014038271117159567,
+        "random_expected_tp": 28.778455790177112,
+        "cutoff_score": 0.1518869215596957,
+        "cutoff_tie_size": 1
+      },
+      {
+        "requested_fraction": 0.03,
+        "reviewed": 6150,
+        "actual_fraction": 0.02999839033027496,
+        "tp": 1136,
+        "fp": 5014,
+        "fn": 1742,
+        "tn": 197119,
+        "precision": 0.18471544715447155,
+        "recall": 0.39471855455177207,
+        "random_expected_recall": 0.02999839033027496,
+        "random_expected_precision": 0.014038271117159567,
+        "random_expected_tp": 86.33536737053133,
+        "cutoff_score": 0.06271252921371993,
+        "cutoff_tie_size": 1
+      },
+      {
+        "requested_fraction": 0.05,
+        "reviewed": 10250,
+        "actual_fraction": 0.049997317217124936,
+        "tp": 1446,
+        "fp": 8804,
+        "fn": 1432,
+        "tn": 193329,
+        "precision": 0.1410731707317073,
+        "recall": 0.5024322446143155,
+        "random_expected_recall": 0.049997317217124936,
+        "random_expected_precision": 0.014038271117159567,
+        "random_expected_tp": 143.89227895088555,
+        "cutoff_score": 0.0391171486496822,
+        "cutoff_tie_size": 1
+      }
+    ]
+  },
+  "frozen_validation_metrics": {
+    "rows": 119323,
+    "fraud_rows": 1411,
+    "prevalence": 0.01182504630289215,
+    "average_precision": 0.1917982270366918,
+    "roc_auc": 0.8941518759993458,
+    "brier_score": 0.010536096315719497,
+    "review_capacity": [
+      {
+        "requested_fraction": 0.01,
+        "reviewed": 1193,
+        "actual_fraction": 0.00999807245878833,
+        "tp": 335,
+        "fp": 858,
+        "fn": 1076,
+        "tn": 117054,
+        "precision": 0.2808046940486169,
+        "recall": 0.23742026931254429,
+        "random_expected_recall": 0.00999807245878833,
+        "random_expected_precision": 0.01182504630289215,
+        "random_expected_tp": 14.107280239350334,
+        "cutoff_score": 0.11907650707758834,
+        "cutoff_tie_size": 1
+      },
+      {
+        "requested_fraction": 0.03,
+        "reviewed": 3579,
+        "actual_fraction": 0.02999421737636499,
+        "tp": 595,
+        "fp": 2984,
+        "fn": 816,
+        "tn": 114928,
+        "precision": 0.166247555183012,
+        "recall": 0.42168674698795183,
+        "random_expected_recall": 0.02999421737636499,
+        "random_expected_precision": 0.01182504630289215,
+        "random_expected_tp": 42.321840718051,
+        "cutoff_score": 0.05095814503814879,
+        "cutoff_tie_size": 1
+      },
+      {
+        "requested_fraction": 0.05,
+        "reviewed": 5966,
+        "actual_fraction": 0.04999874290790543,
+        "tp": 726,
+        "fp": 5240,
+        "fn": 685,
+        "tn": 112672,
+        "precision": 0.1216895742541066,
+        "recall": 0.5145287030474841,
+        "random_expected_recall": 0.04999874290790543,
+        "random_expected_precision": 0.01182504630289215,
+        "random_expected_tp": 70.54822624305456,
+        "cutoff_score": 0.03230111642837825,
+        "cutoff_tie_size": 1
+      }
+    ]
+  },
+  "generalization_vs_validation": {
+    "note": "Descriptive final-minus-validation deltas only; no post-test selection or tuning is permitted.",
+    "recall_at_3pct_delta": -0.025230874854525853,
+    "precision_at_3pct_delta": 0.01928090010154082,
+    "average_precision_delta": -0.006717754122865904,
+    "roc_auc_delta": -0.005963921039341513,
+    "brier_score_delta": 0.001993180854826906
+  },
+  "outputs": {
+    "predictions": "artifacts\\final_test\\20260927T155805_685685Z\\final_test_predictions.csv",
+    "opening_marker": "reports\\final_test_opened.json"
+  },
+  "source_sha256": {
+    "risklens_core\\final_test.py": "6d9f41623e1a67422697c02c386a010b25e1761fb5ba0b9e20ec4fbd2a33a1fd",
+    "scripts\\run_final_test.py": "bf65c1d6d8227708d786ee8fa61709215f763e34ca7ad95fc4038926ef1dc7c1",
+    "risklens_core\\metrics.py": "5544d813bc0626268d03128033e8a7e23709f8db7544a939c07f33303bdfd71e",
+    "risklens_core\\features.py": "2842db90cf15b0be12d81ada03b7994e75fb0b7e6bb9d40ceb3ec922b2c7a77f",
+    "requirements.txt": "b035b20d6f8f267d9882d0690d41ddd0cd65ee010483e8285eadb77ae624f4b1"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "os": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "joblib": "1.5.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "limitations": [
+    "This is the one-time reserved-month evaluation; results must not be used to change the frozen model, features, calibration, review capacity or tie policy.",
+    "The primary 3% capacity is a project operating assumption rather than measured analyst staffing capacity.",
+    "Raw scores are model scores and are not asserted to be calibrated fraud probabilities.",
+    "The Feedzai BAF benchmark is synthetic; final-holdout performance does not establish production or external validity.",
+    "Per-month and pooled results describe months 6-7 of this dataset only and are not guarantees under future drift.",
+    "No pass/fail threshold was predeclared; the observed holdout results are reported without post-hoc acceptance criteria."
+  ],
+  "total_seconds": 12.58401450002566
+}

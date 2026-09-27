@@ -1,0 +1,674 @@
+{
+  "status": "complete",
+  "experiment": "temporal-monitoring-v1",
+  "run_id": "20260927T104738_705478Z",
+  "run_directory": "artifacts\\temporal_monitoring\\20260927T104738_705478Z",
+  "protocol": "temporal-v1",
+  "feature_contract": "baf-base-v1",
+  "dataset_sha256": "7bf10a37ce07e72e14c1b09e5efee3d27261baff4facc7da767b0474dcf9b809",
+  "robustness_run_id": "20260927T070126_112700Z",
+  "calibration_uncertainty_run_id": "20260927T102730_251207Z",
+  "reference_model": "histgb_15_leaves/full",
+  "reference_model_artifact": "artifacts\\robustness\\20260927T070126_112700Z\\full.joblib",
+  "reference_model_sha256": "36e84ab44ccf6d480887233f50178cdaca45def3b1d0387277ad4592a31bb48f",
+  "split": {
+    "train": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation": [
+      5
+    ],
+    "test_reserved": [
+      6,
+      7
+    ]
+  },
+  "test_evaluated": false,
+  "scored_month": 5,
+  "month_rows": {
+    "0": 132440,
+    "1": 127620,
+    "2": 136979,
+    "3": 150936,
+    "4": 127691,
+    "5": 119323,
+    "6": 108168,
+    "7": 96843
+  },
+  "reference_reproduction": {
+    "rows": 119323,
+    "max_absolute_probability_difference": 9.996344030316351e-17
+  },
+  "drift_policy": {
+    "alerting_is_label_free": true,
+    "primary_reference": "pooled training months 0-4",
+    "primary_target": "validation month 5",
+    "feature_bins": 10,
+    "thresholds": {
+      "psi": {
+        "normal_below": 0.1,
+        "watch_from": 0.1,
+        "alert_from": 0.25
+      },
+      "absolute_missing_rate_delta": {
+        "normal_below": 0.02,
+        "watch_from": 0.02,
+        "alert_from": 0.05
+      },
+      "note": "These are predeclared engineering heuristics for dashboard triage, not statistical tests or regulatory thresholds. They must be revisited with production history."
+    },
+    "note": "PSI/missingness thresholds are operational heuristics, not hypothesis tests."
+  },
+  "latest_monitoring_snapshot": {
+    "status": "alert",
+    "as_of_month": 5,
+    "reference_population": "training months 0-4 pooled",
+    "target_population": "validation month 5",
+    "model": "histgb_15_leaves/full raw score",
+    "feature_drift": {
+      "status": "alert",
+      "counts_by_severity": {
+        "normal": 24,
+        "watch": 6,
+        "alert": 4
+      },
+      "max_psi": 3.7108360839324677,
+      "features_at_watch_or_alert": 10,
+      "top_features": [
+        {
+          "feature": "velocity_4w",
+          "kind": "numeric",
+          "psi": 3.7108360839324677,
+          "ks_statistic": 0.8114584955068235,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "alert"
+        },
+        {
+          "feature": "velocity_24h",
+          "kind": "numeric",
+          "psi": 0.7757555452558561,
+          "ks_statistic": 0.2857260976605899,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "alert"
+        },
+        {
+          "feature": "velocity_6h",
+          "kind": "numeric",
+          "psi": 0.3884703155473763,
+          "ks_statistic": 0.26609545026727577,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "alert"
+        },
+        {
+          "feature": "zip_count_4w",
+          "kind": "numeric",
+          "psi": 0.1964599627659509,
+          "ks_statistic": 0.17462542631581457,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "watch"
+        },
+        {
+          "feature": "date_of_birth_distinct_emails_4w",
+          "kind": "numeric",
+          "psi": 0.177503891554425,
+          "ks_statistic": 0.19975142487441944,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "watch"
+        },
+        {
+          "feature": "name_email_similarity",
+          "kind": "numeric",
+          "psi": 0.16798281578534985,
+          "ks_statistic": 0.10561245900601546,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "watch"
+        },
+        {
+          "feature": "credit_risk_score",
+          "kind": "numeric",
+          "psi": 0.1531862157833878,
+          "ks_statistic": 0.14017005336575092,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "watch"
+        },
+        {
+          "feature": "prev_address_months_count",
+          "kind": "numeric",
+          "psi": 0.11833003560518567,
+          "ks_statistic": 0.10780127489104085,
+          "reference_missing_rate": 0.6954723191636104,
+          "target_missing_rate": 0.8256245652556506,
+          "missing_rate_delta": 0.13015224609204024,
+          "unseen_category_rate": null,
+          "severity": "alert"
+        },
+        {
+          "feature": "session_length_in_minutes",
+          "kind": "numeric",
+          "psi": 0.0966407985431474,
+          "ks_statistic": 0.11416048073653509,
+          "reference_missing_rate": 0.0018914670858086687,
+          "target_missing_rate": 0.001969444281488062,
+          "missing_rate_delta": 7.797719567939317e-05,
+          "unseen_category_rate": null,
+          "severity": "normal"
+        },
+        {
+          "feature": "prev_address_months_count__missing",
+          "kind": "numeric",
+          "psi": 0.09489384943739326,
+          "ks_statistic": 0.1301522460920402,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "normal"
+        },
+        {
+          "feature": "current_address_months_count",
+          "kind": "numeric",
+          "psi": 0.09354614694866457,
+          "ks_statistic": 0.11059670486824114,
+          "reference_missing_rate": 0.004184019915165186,
+          "target_missing_rate": 0.0016761227927557974,
+          "missing_rate_delta": -0.0025078971224093884,
+          "unseen_category_rate": null,
+          "severity": "normal"
+        },
+        {
+          "feature": "phone_home_valid",
+          "kind": "numeric",
+          "psi": 0.058251401990025334,
+          "ks_statistic": 0.11968473040386474,
+          "reference_missing_rate": 0.0,
+          "target_missing_rate": 0.0,
+          "missing_rate_delta": 0.0,
+          "unseen_category_rate": null,
+          "severity": "normal"
+        }
+      ]
+    },
+    "score_drift": {
+      "psi": 0.006253053845293304,
+      "ks_statistic": 0.03170377406408387,
+      "reference_mean": 0.009971729579548705,
+      "target_mean": 0.008616678598758549,
+      "reference_p50": 0.0025602852840620285,
+      "target_p50": 0.002332556079678929,
+      "reference_p95": 0.03792983286413308,
+      "target_p95": 0.03158692578438326,
+      "severity": "normal"
+    },
+    "alerts": [
+      {
+        "type": "feature_drift",
+        "severity": "alert",
+        "feature": "velocity_4w",
+        "psi": 3.7108360839324677,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "alert",
+        "feature": "velocity_24h",
+        "psi": 0.7757555452558561,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "alert",
+        "feature": "velocity_6h",
+        "psi": 0.3884703155473763,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "alert",
+        "feature": "prev_address_months_count",
+        "psi": 0.11833003560518567,
+        "missing_rate_delta": 0.13015224609204024
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "zip_count_4w",
+        "psi": 0.1964599627659509,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "date_of_birth_distinct_emails_4w",
+        "psi": 0.177503891554425,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "name_email_similarity",
+        "psi": 0.16798281578534985,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "credit_risk_score",
+        "psi": 0.1531862157833878,
+        "missing_rate_delta": 0.0
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "bank_months_count",
+        "psi": 0.02145232463103826,
+        "missing_rate_delta": -0.02651611355350897
+      },
+      {
+        "type": "feature_drift",
+        "severity": "watch",
+        "feature": "intended_balcon_amount",
+        "psi": 0.0196521427962688,
+        "missing_rate_delta": 0.04157029654893474
+      }
+    ],
+    "thresholds": {
+      "psi": {
+        "normal_below": 0.1,
+        "watch_from": 0.1,
+        "alert_from": 0.25
+      },
+      "absolute_missing_rate_delta": {
+        "normal_below": 0.02,
+        "watch_from": 0.02,
+        "alert_from": 0.05
+      },
+      "note": "These are predeclared engineering heuristics for dashboard triage, not statistical tests or regulatory thresholds. They must be revisited with production history."
+    },
+    "label_free": true,
+    "interpretation": "This snapshot is a monitoring triage artifact. Drift alerts identify distribution change; they do not establish model failure, fraud causation, or unfairness."
+  },
+  "month_over_month": [
+    {
+      "reference_month": 0,
+      "target_month": 1,
+      "feature_status": "alert",
+      "max_feature_psi": 3.9429244563492616,
+      "features_at_watch_or_alert": 11,
+      "score_psi": 0.010226448944204311,
+      "score_ks_statistic": 0.040660988803639664,
+      "score_status": "normal",
+      "overall_status": "alert"
+    },
+    {
+      "reference_month": 1,
+      "target_month": 2,
+      "feature_status": "alert",
+      "max_feature_psi": 0.51065747840792,
+      "features_at_watch_or_alert": 3,
+      "score_psi": 0.011406581176959911,
+      "score_ks_statistic": 0.0451264949953567,
+      "score_status": "normal",
+      "overall_status": "alert"
+    },
+    {
+      "reference_month": 2,
+      "target_month": 3,
+      "feature_status": "alert",
+      "max_feature_psi": 3.0454367116545233,
+      "features_at_watch_or_alert": 6,
+      "score_psi": 0.018871474824032463,
+      "score_ks_statistic": 0.03427167281097121,
+      "score_status": "normal",
+      "overall_status": "alert"
+    },
+    {
+      "reference_month": 3,
+      "target_month": 4,
+      "feature_status": "alert",
+      "max_feature_psi": 0.9611237901719052,
+      "features_at_watch_or_alert": 4,
+      "score_psi": 0.007759576756880218,
+      "score_ks_statistic": 0.03872196661969396,
+      "score_status": "normal",
+      "overall_status": "alert"
+    },
+    {
+      "reference_month": 4,
+      "target_month": 5,
+      "feature_status": "alert",
+      "max_feature_psi": 1.6714377813938002,
+      "features_at_watch_or_alert": 4,
+      "score_psi": 0.015214346850768407,
+      "score_ks_statistic": 0.046687960854800425,
+      "score_status": "normal",
+      "overall_status": "alert"
+    }
+  ],
+  "monthly_score_distribution": [
+    {
+      "month": 0,
+      "rows": 132440,
+      "mean_score": 0.010709543018159512,
+      "p50_score": 0.002981412995590651,
+      "p95_score": 0.04019152389582039,
+      "p99_score": 0.14365330688453695,
+      "prevalence": 0.011325883418906675
+    },
+    {
+      "month": 1,
+      "rows": 127620,
+      "mean_score": 0.008723530635445786,
+      "p50_score": 0.0026471974675763015,
+      "p95_score": 0.031671326853012244,
+      "p99_score": 0.11383486674341044,
+      "prevalence": 0.009387243378780755
+    },
+    {
+      "month": 2,
+      "rows": 136979,
+      "mean_score": 0.008227885624579972,
+      "p50_score": 0.002330756822810161,
+      "p95_score": 0.029186277887005778,
+      "p99_score": 0.11217055711566226,
+      "prevalence": 0.008745866154666044
+    },
+    {
+      "month": 3,
+      "rows": 150936,
+      "mean_score": 0.01083230324501139,
+      "p50_score": 0.002317424173421399,
+      "p95_score": 0.043637476421539804,
+      "p99_score": 0.1607913539021799,
+      "prevalence": 0.009222451900143107
+    },
+    {
+      "month": 4,
+      "rows": 127691,
+      "mean_score": 0.011307435242235863,
+      "p50_score": 0.0026114858786528963,
+      "p95_score": 0.04539201900857877,
+      "p99_score": 0.1628143127511394,
+      "prevalence": 0.011371200789405674
+    },
+    {
+      "month": 5,
+      "rows": 119323,
+      "mean_score": 0.008616678598758549,
+      "p50_score": 0.002332556079678929,
+      "p95_score": 0.03158692578438326,
+      "p99_score": 0.11928153429806054,
+      "prevalence": 0.01182504630289215
+    }
+  ],
+  "prospective_backtest": {
+    "method": "fixed HistGB-15 configuration; each target month scored only by a model fit on earlier months",
+    "capacity": 0.03,
+    "folds": [
+      {
+        "target_month": 1,
+        "fit_months": [
+          0
+        ],
+        "fit_rows": 132440,
+        "fit_fraud_rows": 1500,
+        "score_rows": 127620,
+        "score_fraud_rows": 1198,
+        "fit_seconds": 5.0742329999338835,
+        "warnings": [],
+        "metrics": {
+          "rows": 127620,
+          "fraud_rows": 1198,
+          "prevalence": 0.009387243378780755,
+          "average_precision": 0.12085847330635097,
+          "roc_auc": 0.8723709993313065,
+          "brier_score": 0.008811932693200172,
+          "review_capacity": [
+            {
+              "requested_fraction": 0.03,
+              "reviewed": 3828,
+              "actual_fraction": 0.02999529854254819,
+              "tp": 471,
+              "fp": 3357,
+              "fn": 727,
+              "tn": 123065,
+              "precision": 0.12304075235109718,
+              "recall": 0.39315525876460766,
+              "random_expected_recall": 0.02999529854254819,
+              "random_expected_precision": 0.009387243378780755,
+              "random_expected_tp": 35.93436765397273,
+              "cutoff_score": 0.06070388447374307,
+              "cutoff_tie_size": 1
+            }
+          ]
+        }
+      },
+      {
+        "target_month": 2,
+        "fit_months": [
+          0,
+          1
+        ],
+        "fit_rows": 260060,
+        "fit_fraud_rows": 2698,
+        "score_rows": 136979,
+        "score_fraud_rows": 1198,
+        "fit_seconds": 8.869687400059775,
+        "warnings": [],
+        "metrics": {
+          "rows": 136979,
+          "fraud_rows": 1198,
+          "prevalence": 0.008745866154666044,
+          "average_precision": 0.12815514470177972,
+          "roc_auc": 0.8841038019351082,
+          "brier_score": 0.00816396688744807,
+          "review_capacity": [
+            {
+              "requested_fraction": 0.03,
+              "reviewed": 4109,
+              "actual_fraction": 0.029997298856029028,
+              "tp": 474,
+              "fp": 3635,
+              "fn": 724,
+              "tn": 132146,
+              "precision": 0.11535653443660258,
+              "recall": 0.39565943238731216,
+              "random_expected_recall": 0.029997298856029028,
+              "random_expected_precision": 0.008745866154666044,
+              "random_expected_tp": 35.93676402952277,
+              "cutoff_score": 0.0536403569635637,
+              "cutoff_tie_size": 1
+            }
+          ]
+        }
+      },
+      {
+        "target_month": 3,
+        "fit_months": [
+          0,
+          1,
+          2
+        ],
+        "fit_rows": 397039,
+        "fit_fraud_rows": 3896,
+        "score_rows": 150936,
+        "score_fraud_rows": 1392,
+        "fit_seconds": 12.215719799976796,
+        "warnings": [],
+        "metrics": {
+          "rows": 150936,
+          "fraud_rows": 1392,
+          "prevalence": 0.009222451900143107,
+          "average_precision": 0.1471945566151774,
+          "roc_auc": 0.9120990598776602,
+          "brier_score": 0.008820606590799186,
+          "review_capacity": [
+            {
+              "requested_fraction": 0.03,
+              "reviewed": 4528,
+              "actual_fraction": 0.029999469974028727,
+              "tp": 583,
+              "fp": 3945,
+              "fn": 809,
+              "tn": 145599,
+              "precision": 0.12875441696113074,
+              "recall": 0.4188218390804598,
+              "random_expected_recall": 0.029999469974028727,
+              "random_expected_precision": 0.009222451900143107,
+              "random_expected_tp": 41.75926220384799,
+              "cutoff_score": 0.09878098906670227,
+              "cutoff_tie_size": 1
+            }
+          ]
+        }
+      },
+      {
+        "target_month": 4,
+        "fit_months": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "fit_rows": 547975,
+        "fit_fraud_rows": 5288,
+        "score_rows": 127691,
+        "score_fraud_rows": 1452,
+        "fit_seconds": 16.56114750006236,
+        "warnings": [],
+        "metrics": {
+          "rows": 127691,
+          "fraud_rows": 1452,
+          "prevalence": 0.011371200789405674,
+          "average_precision": 0.1777042277417667,
+          "roc_auc": 0.9084864214337242,
+          "brier_score": 0.010184367355197966,
+          "review_capacity": [
+            {
+              "requested_fraction": 0.03,
+              "reviewed": 3830,
+              "actual_fraction": 0.02999428307398329,
+              "tp": 613,
+              "fp": 3217,
+              "fn": 839,
+              "tn": 123022,
+              "precision": 0.16005221932114883,
+              "recall": 0.4221763085399449,
+              "random_expected_recall": 0.02999428307398329,
+              "random_expected_precision": 0.011371200789405674,
+              "random_expected_tp": 43.55169902342373,
+              "cutoff_score": 0.0716399681038645,
+              "cutoff_tie_size": 1
+            }
+          ]
+        }
+      },
+      {
+        "target_month": 5,
+        "fit_months": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "fit_rows": 675666,
+        "fit_fraud_rows": 6740,
+        "score_rows": 119323,
+        "score_fraud_rows": 1411,
+        "fit_seconds": 19.174199000000954,
+        "warnings": [],
+        "metrics": {
+          "rows": 119323,
+          "fraud_rows": 1411,
+          "prevalence": 0.01182504630289215,
+          "average_precision": 0.1883298111219007,
+          "roc_auc": 0.8949895918728373,
+          "brier_score": 0.010561891524829548,
+          "review_capacity": [
+            {
+              "requested_fraction": 0.03,
+              "reviewed": 3579,
+              "actual_fraction": 0.02999421737636499,
+              "tp": 594,
+              "fp": 2985,
+              "fn": 817,
+              "tn": 114927,
+              "precision": 0.16596814752724226,
+              "recall": 0.4209780297661233,
+              "random_expected_recall": 0.02999421737636499,
+              "random_expected_precision": 0.01182504630289215,
+              "random_expected_tp": 42.321840718051,
+              "cutoff_score": 0.050190531140299484,
+              "cutoff_tie_size": 1
+            }
+          ]
+        }
+      }
+    ],
+    "month5_max_absolute_probability_difference_vs_frozen_reference": 0.0,
+    "interpretation": "Label-aware development backtest for delayed performance monitoring. It is separate from the label-free alert status and does not use sealed months 6-7."
+  },
+  "outputs": {
+    "monitoring_snapshot": "artifacts\\temporal_monitoring\\20260927T104738_705478Z\\monitoring_snapshot.json",
+    "feature_drift_latest": "artifacts\\temporal_monitoring\\20260927T104738_705478Z\\feature_drift_train0_4_to_month5.csv",
+    "month_over_month_drift": "artifacts\\temporal_monitoring\\20260927T104738_705478Z\\month_over_month_drift.csv",
+    "monthly_score_distribution": "artifacts\\temporal_monitoring\\20260927T104738_705478Z\\monthly_score_distribution.csv",
+    "prospective_backtest": "artifacts\\temporal_monitoring\\20260927T104738_705478Z\\prospective_backtest.csv"
+  },
+  "source_sha256": {
+    "risklens_core/monitoring.py": "601fa878dd66faeadedb4cd7fcc6cc9972933e0473acd0759c0617f40810ac19",
+    "scripts/run_temporal_monitoring.py": "e383e83d916efa2c6775d65ab330bae75b6a22c087892a20fa72bd335fda8dc3",
+    "risklens_core/robustness.py": "4abde488c78beee65f1878a7c69af83536225e9ed9cc935b5e76df5d698d0a0c",
+    "risklens_core/scoring.py": "b218fc3d1f18bf1dc90fe362c7ba82e52c4a69bf030f4f378196545e600c1249",
+    "requirements.txt": "0d251ed245ff263b6cb0f27d536a0c3036da9ab9b15a0bc59a8bafa49fee12d2"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "os": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+    "native_thread_limit": 4,
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "joblib": "1.5.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "limitations": [
+    "Months 6-7 remain sealed and are not used for drift, backtesting, threshold choice, or alerting.",
+    "PSI and missingness thresholds are engineering triage heuristics, not statistical significance tests or regulatory limits.",
+    "The frozen model's score distributions on training months 0-4 are retrospective/in-sample and are used only as a label-free distribution baseline.",
+    "Prospective backtest models are fit on progressively larger histories, so performance changes can reflect both population change and additional training data.",
+    "Observed drift does not by itself prove degraded model quality, fraud causation, unfairness, or a need to retrain.",
+    "Fraud labels may be delayed in a real deployment; label-aware performance monitoring should therefore run on a delayed cadence.",
+    "The current 3% review capacity remains a project assumption rather than measured analyst staffing capacity."
+  ],
+  "total_seconds": 110.86622680001892
+}
