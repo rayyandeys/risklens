@@ -137,11 +137,20 @@ from the operational API.
 
 ## Demo access
 
-Open the [deployed console](https://rayyan-risklens.onrender.com). It requires an
-expiring bearer credential. Anonymous demo access is not currently implemented.
+Open the [deployed console](https://rayyan-risklens.onrender.com) and choose
+**Explore demo** for public read-only access when enabled by the operator.
+No token or account is needed. The demo exposes only the frozen synthetic BAF
+month-5 workflow and monitoring evidence. Analyst notes and identities are hidden.
+Review decisions still require a signed-in analyst; demo access never authenticates
+requests to the private API.
+
+Set `RISKLENS_PUBLIC_DEMO=true` on the deployed service to enable the button and
+public GET endpoints. The default is disabled; set it to `false` and restart to
+remove public access. See [public demo setup](docs/PUBLIC_DEMO.md).
 
 | Role | Inspect queue and monitoring | Record decisions |
 |---|---|---|
+| Public demo | Frozen synthetic workflow only | No |
 | Viewer | Yes | No |
 | Analyst / admin | Yes | Yes |
 

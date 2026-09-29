@@ -12,6 +12,8 @@ services:
     envVars:
       - key: RISKLENS_ENV
         value: production
+      - key: RISKLENS_PUBLIC_DEMO
+        value: "true"
       - key: RISKLENS_ENABLE_DOCS
         value: "false"
       - key: RISKLENS_MAX_REQUEST_BODY_BYTES

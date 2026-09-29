@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ApiError, api } from './api'
+import { ApiError, api, PUBLIC_DEMO } from './api'
 import { CasePanel } from './components/CasePanel'
 import { LoginGate } from './components/LoginGate'
 import { MonitoringPage } from './components/MonitoringPage'
@@ -212,6 +212,7 @@ export default function App() {
         onLogout={logout}
       />
       <main className="workspace">
+        {token === PUBLIC_DEMO && <div className="demo-banner"><div><strong>Public demo · read-only</strong><span>Synthetic BAF cases. Analyst notes and identities are hidden; review decisions require sign-in.</span></div><button className="button" onClick={logout}>Analyst sign-in</button></div>}
         <header className="workspace-header">
           {view === 'queue' ? (
             <div><span className="eyebrow">Operational review · validation month {activeRun?.scored_month ?? '—'}</span><h1>Ranked review queue</h1><p>Prioritize scarce analyst capacity, inspect model behaviour, and preserve every review action.</p></div>

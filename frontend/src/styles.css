@@ -448,3 +448,13 @@ button:disabled { cursor: not-allowed; opacity: .46; }
   .month-drift-head, .month-drift-row { grid-template-columns: 1fr .75fr .7fr; }
   .month-drift-head span:nth-child(3), .month-drift-row span:nth-child(3) { display: none; }
 }
+
+.demo-entry { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.demo-entry .button { width: 100%; min-height: 46px; font-size: 14px; }
+.demo-entry p { color: var(--muted); font-size: 11px; text-align: center; line-height: 1.6; }
+.demo-banner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 12px; background: rgba(80,213,200,.06); }
+.demo-banner strong, .demo-banner span { display: block; }
+.demo-banner strong { font-size: 13px; }
+.demo-banner span { margin-top: 5px; font-size: 11px; color: var(--muted); line-height: 1.6; }
+.demo-banner .button { flex-shrink: 0; }
+@media (max-width: 640px) { .demo-banner { align-items: flex-start; flex-direction: column; } }

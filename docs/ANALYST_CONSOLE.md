@@ -4,6 +4,12 @@ RiskLens now includes a React/TypeScript analyst console over the authenticated 
 This is an operational interface for the synthetic BAF development workflow; it is not a
 production fraud-decision product and must not be represented as one.
 
+## Public viewing
+
+When `RISKLENS_PUBLIC_DEMO=true`, the login page offers **Explore demo**. This opens
+a separate read-only API surface for the frozen synthetic BAF workflow, with
+analyst notes and identities hidden. See [public demo setup](PUBLIC_DEMO.md).
+
 ## What it exposes
 
 - Opaque bearer-token sign-in against `/api/v1/auth/me`; the browser keeps the token in

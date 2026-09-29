@@ -246,6 +246,86 @@ def create_app(
 
     app.include_router(router)
 
+    # Separate anonymous GET surface: never grants an identity to /api/v1.
+    # Only the frozen synthetic BAF month-5 workflow is eligible for publication.
+    @app.get("/api/demo/config")
+    def demo_config():
+        return {"enabled": settings.public_demo_enabled}
+
+    def require_demo():
+        if not settings.public_demo_enabled:
+            raise HTTPException(404, "Public demo is disabled")
+
+    def public_run(run_id: str, session: Session = Depends(get_session)):
+        try:
+            run = get_run(session, run_id)
+        except NotFoundError as exc:
+            raise HTTPException(404, "Demo run not found") from exc
+        if not demo_eligible(run):
+            raise HTTPException(404, "Demo run not found")
+        return run
+
+    def demo_eligible(run):
+        return (
+            run.dataset_sha256 == "7bf10a37ce07e72e14c1b09e5efee3d27261baff4facc7da767b0474dcf9b809"
+            and run.model_sha256 == "65e9caa079ba46af72955a024b7ae0fd7d207e80c10eba686954ff149eb5ee12"
+            and run.model_name == "histgb_15_leaves/no_customer_age"
+            and run.scored_month == 5 and run.capacity == 0.03
+        )
+
+    demo = APIRouter(prefix="/api/demo", dependencies=[Depends(require_demo)])
+
+    @demo.get("/auth/me")
+    def demo_identity():
+        return {"analyst_id": "Public demo", "role": "viewer", "expires_at": None}
+
+    @demo.get("/runs", response_model=list[RunSummary])
+    def demo_runs(session: Session = Depends(get_session)):
+        return [run_summary(session, run.run_id) for run in list_runs(session) if demo_eligible(run)]
+
+    @demo.get("/monitoring/overview")
+    def demo_monitoring():
+        return monitoring_overview()
+
+    @demo.get("/runs/{run_id}/summary", response_model=RunSummary)
+    def demo_summary(run=Depends(public_run), session: Session = Depends(get_session)):
+        return run_summary(session, run.run_id)
+
+    @demo.get("/runs/{run_id}/cases", response_model=list[CaseListItem])
+    def demo_cases(
+        status: str | None = None, decision: str | None = None,
+        min_score: float | None = Query(default=None, ge=0, le=1),
+        limit: int = Query(default=50, ge=1, le=100),
+        offset: int = Query(default=0, ge=0),
+        run=Depends(public_run), session: Session = Depends(get_session),
+    ):
+        return cases(run.run_id, status, decision, min_score, limit, offset, session)
+
+    @demo.get("/runs/{run_id}/cases/{case_id}", response_model=CaseDetail)
+    def demo_detail(case_id: str, run=Depends(public_run), session: Session = Depends(get_session)):
+        detail = case_detail(run.run_id, case_id, session)
+        # Never publish free-text analyst notes, including notes on synthetic cases.
+        detail.analyst_note = ""
+        return detail
+
+    @demo.get("/runs/{run_id}/cases/{case_id}/events", response_model=list[ReviewEventResponse])
+    def demo_events(case_id: str, run=Depends(public_run), session: Session = Depends(get_session)):
+        history = events(run.run_id, case_id, session)
+        for item in history:
+            item.analyst_note = ""
+            item.analyst_id = None
+        return history
+
+    @demo.get("/runs/{run_id}/explanations/summary")
+    def demo_explanation_summary(run=Depends(public_run), session: Session = Depends(get_session)):
+        return explanation_summary(run.run_id, session)
+
+    @demo.get("/runs/{run_id}/cases/{case_id}/explanation", response_model=ExplanationResponse)
+    def demo_explanation(case_id: str, run=Depends(public_run), session: Session = Depends(get_session)):
+        return case_explanation(run.run_id, case_id, session)
+
+    app.include_router(demo)
+
     # A production Vite build can be served by the same process. API/docs routes
     # are registered first, so mounting the SPA at / does not shadow them.
     frontend_dist = Path(__file__).resolve().parents[1] / "frontend" / "dist"

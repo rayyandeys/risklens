@@ -5,7 +5,7 @@ export type Decision = 'confirmed_fraud' | 'legitimate' | 'escalate'
 export interface Identity {
   analyst_id: string
   role: Role
-  expires_at: string
+  expires_at: string | null
 }
 
 export interface RunSummary {

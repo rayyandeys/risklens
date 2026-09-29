@@ -45,7 +45,7 @@ export function Sidebar({ identity, runs, selectedRunId, view, onViewChange, onR
       <div className="sidebar-footer">
         <div className="identity-card">
           <div className="avatar">{identity.analyst_id.slice(0, 2).toUpperCase()}</div>
-          <div className="identity-copy"><strong>{identity.analyst_id}</strong><span>{identity.role} · expires {when(identity.expires_at)}</span></div>
+          <div className="identity-copy"><strong>{identity.analyst_id}</strong><span>{identity.expires_at ? `${identity.role} · expires ${when(identity.expires_at)}` : 'Public demo · read-only'}</span></div>
           <button className="icon-button" onClick={onLogout} title="Disconnect"><LogoutIcon /></button>
         </div>
       </div>

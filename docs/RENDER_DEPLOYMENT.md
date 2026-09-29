@@ -91,3 +91,10 @@ Verify:
 - a test analyst decision persists after a browser refresh and the History tab records the authenticated analyst ID.
 
 Do not use the public production service to rerun research commands or the final holdout.
+
+## Public portfolio viewing
+
+Enable `RISKLENS_PUBLIC_DEMO=true` in the service environment after deploying the
+public-demo update. Visitors can then choose **Explore demo** without receiving a
+token. Analyst actions still require authenticated access. See
+[PUBLIC_DEMO.md](PUBLIC_DEMO.md) for installation, boundaries and checks.

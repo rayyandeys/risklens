@@ -12,6 +12,8 @@ import type {
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
 
+export const PUBLIC_DEMO = 'public-demo'
+
 export class ApiError extends Error {
   status: number
   detail: string
@@ -25,12 +27,17 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, token: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const demo = token === PUBLIC_DEMO
+  if (demo && init?.method && init.method !== 'GET') {
+    throw new ApiError(403, 'Public demo is read-only.')
+  }
+  const route = demo ? path.replace(/^\/api\/v1\//, '/api/demo/') : path
+  const response = await fetch(`${API_BASE}${route}`, {
     ...init,
     headers: {
       Accept: 'application/json',
       ...(init?.body ? { 'Content-Type': 'application/json' } : {}),
-      Authorization: `Bearer ${token}`,
+      ...(!demo && token ? { Authorization: `Bearer ${token}` } : {}),
       ...init?.headers,
     },
   })
@@ -52,6 +59,7 @@ async function request<T>(path: string, token: string, init?: RequestInit): Prom
 }
 
 export const api = {
+  demoConfig: () => request<{ enabled: boolean }>('/api/demo/config', ''),
   me: (token: string) => request<Identity>('/api/v1/auth/me', token),
   runs: (token: string) => request<RunSummary[]>('/api/v1/runs', token),
   monitoring: (token: string) => request<MonitoringOverview>('/api/v1/monitoring/overview', token),

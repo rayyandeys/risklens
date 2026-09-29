@@ -42,6 +42,7 @@ class RuntimeSettings:
     hsts_enabled: bool
     max_request_body_bytes: int
     require_postgres: bool
+    public_demo_enabled: bool = False
 
     @property
     def production(self) -> bool:
@@ -71,4 +72,5 @@ class RuntimeSettings:
             hsts_enabled=production,
             max_request_body_bytes=max_request_body_bytes,
             require_postgres=production,
+            public_demo_enabled=_truthy(os.getenv("RISKLENS_PUBLIC_DEMO"), default=False),
         )
