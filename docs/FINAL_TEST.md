@@ -31,7 +31,11 @@ second test result.
 If the process is interrupted after the marker is written, stop and inspect the attempt rather than
 rerunning or changing code. The marker is evidence that the holdout has already been opened.
 
-## Run
+## Historical one-time execution command
+
+**Completed on 27 September 2026. Do not run this again for the current freeze.**
+The commands below document the original procedure. Read
+[`final_test_summary.json`](../reports/final_test_summary.json) for the saved result.
 
 ```bat
 python -m unittest discover -s tests -v

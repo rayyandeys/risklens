@@ -65,11 +65,15 @@ multi-user deployment should terminate TLS, use a real identity provider/session
 origins at the edge, rotate credentials, add rate limits and define a proper authorization model.
 
 The interface must not be used to automate adverse decisions about real people. BAF is synthetic;
-review decisions here are workflow demonstrations. Calibration, subgroup/error analysis, temporal
-drift/monitoring, PyTorch comparison and sealed final evaluation remain separate unfinished
-milestones.
+review decisions here are workflow demonstrations. Calibration analysis, governance review, temporal monitoring, the PyTorch comparison and
+the one-time final evaluation were completed in later milestones. See the root README and
+committed reports for the current results; this document originally described console v1.
 
-## Verification status
+## Historical verification status at console v1
+
+This section records the original console milestone, not the current deployment status.
+The repository now includes the built frontend and completed final-evaluation evidence.
+Use the current deployment guide for release checks.
 
 Backend regression suite after adding optional static serving: 64 tests run, 63 passed and the
 optional live PostgreSQL gate skipped because `RISKLENS_TEST_POSTGRES_URL` was not set.
